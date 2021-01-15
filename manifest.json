@@ -1,0 +1,22 @@
+{
+    "name": "Scratch Downloader",
+    "author": "TheUltimateGuide, a Youtube channel",
+    "version": "1.0.0",
+    "manifest_version": 2,
+    "description": "A Chromium Extension to download files from Scratch",
+    "icons": {
+        "16": "/icons/scratchdownload16x16.png",
+        "32": "/icons/scratchdownload32x32.png",
+        "48": "/icons/scratchdownload48x48.png",
+        "128": "/icons/scratchdownload128x128.png"
+    },
+    "browser_action": {
+        "default_popup": "popup/popup.html"
+    },
+    
+    "permissions" : [
+        "*://scratch.mit.edu/projects/*/",
+        "tabs"
+    ]
+
+}
