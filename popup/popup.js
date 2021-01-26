@@ -17,8 +17,15 @@ if (record){
             var recordedChunks = [];
 
             console.log(stream);
-            var options = { mimeType: "video/webm; codecs=vp9" };
-            mediaRecorder = new MediaRecorder(stream, options);
+            var chromiumoptions = { mimeType: "video/webm; codecs=vp9" };
+            var firefoxoptions = {mimeType: "video/webm;codecs=vp7"};
+            var is_chrome = /chrome/i.test( navigator.userAgent );
+            var isFirefox = typeof InstallTrigger !== 'undefined';
+            if (is_chrome){
+                mediaRecorder = new MediaRecorder(stream, chromiumoptions);
+            } else if (isFirefox){
+                mediaRecorder = new MediaRecorder(stream, firefoxoptions);
+            }
 
             mediaRecorder.ondataavailable = handleDataAvailable;
             mediaRecorder.start();
