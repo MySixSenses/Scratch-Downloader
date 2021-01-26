@@ -12,6 +12,10 @@ if (record){
         });    
         function getstream(time) {
             var canvas = document.querySelector("canvas");
+            if (canvas === undefined) {
+                alert("Scratch Downloader couldn't find a canvas on this webpage");
+                return;
+            }
             // Optional frames per second argument.
             var stream = canvas.captureStream(30);
             var recordedChunks = [];
@@ -25,6 +29,9 @@ if (record){
                 mediaRecorder = new MediaRecorder(stream, chromiumoptions);
             } else if (isFirefox){
                 mediaRecorder = new MediaRecorder(stream, firefoxoptions);
+            } else {
+                alert("It appears that you aren't using a browser Scratch Downloader understands. We currently only support Chromium and Firefox.")
+                return;
             }
 
             mediaRecorder.ondataavailable = handleDataAvailable;
