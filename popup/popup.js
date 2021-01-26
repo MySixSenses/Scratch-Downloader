@@ -18,7 +18,7 @@ if (record){
 
             console.log(stream);
             var chromiumoptions = { mimeType: "video/webm; codecs=vp9" };
-            var firefoxoptions = {mimeType: "video/webm;codecs=vp7"};
+            var firefoxoptions = {mimeType: "video/webm;codecs=vp8"};
             var is_chrome = /chrome/i.test( navigator.userAgent );
             var isFirefox = typeof InstallTrigger !== 'undefined';
             if (is_chrome){

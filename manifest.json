@@ -1,7 +1,7 @@
 {
     "name": "Scratch Downloader",
     "author": "TheUltimateGuide",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "manifest_version": 2,
     "description": "A Chromium Extension to download files from Scratch",
     "icons": {
