@@ -1,6 +1,7 @@
 # Scratch-Downloader
-A Chromium extension to download videos from [Scratch](https://scratch.mit.edu) using the MediaRecorder API.
+A Chromium/FireFox extension to download videos from [Scratch](https://scratch.mit.edu) using the MediaRecorder API.
 ## Webstores
-Currently only on Microsoft Edge store 
+On Microsoft Edge Store and Chrome  
 https://microsoftedge.microsoft.com/addons/detail/modhjbffcgblcgnpnleopffhljghghcf  
-Awaiting approval for Chrome Web Store and Firefox
+https://chrome.google.com/webstore/detail/scratch-downloader/ceeackimohhoibchhooifgikfibjfmmk  
+Awaiting approval for Firefox
