@@ -21,16 +21,14 @@ if (record){
             var recordedChunks = [];
 
             console.log(stream);
-            var chromiumoptions = { mimeType: "video/webm; codecs=vp9" };
-            var firefoxoptions = {mimeType: "video/webm;codecs=vp8"};
-            var is_chrome = /chrome/i.test( navigator.userAgent );
-            var isFirefox = typeof InstallTrigger !== 'undefined';
-            if (is_chrome){
-                mediaRecorder = new MediaRecorder(stream, chromiumoptions);
-            } else if (isFirefox){
-                mediaRecorder = new MediaRecorder(stream, firefoxoptions);
+            var vp9codec = { mimeType: "video/webm; codecs=vp9" };
+            var vp8codec = {mimeType: "video/webm;codecs=vp8"};
+            if (MediaSouce.isTypeSupported("video/webm; codecs=vp9")){
+                mediaRecorder = new MediaRecorder(stream, vp9codec);
+            } else if (MediaSouce.isTypeSupported("video/webm; codecs=vp8")){
+                mediaRecorder = new MediaRecorder(stream, vp8codec);
             } else {
-                alert("It appears that you aren't using a browser Scratch Downloader understands. We currently only support Chromium and Firefox.")
+                alert("It appears your browser doesn't support either video source.")
                 return;
             }
 
