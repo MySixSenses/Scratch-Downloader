@@ -1,9 +1,9 @@
 {
     "name": "Scratch Downloader",
     "author": "TheUltimateGuide",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "manifest_version": 2,
-    "description": "A Chromium Extension to download files from Scratch",
+    "description": "A Chromium/Firefox Extension to download files from Scratch",
     "icons": {
         "16": "/icons/scratchdownload16x16.png",
         "32": "/icons/scratchdownload32x32.png",
