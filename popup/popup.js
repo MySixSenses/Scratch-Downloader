@@ -1,15 +1,23 @@
 const record = document.getElementById("record");
 const milliseconds = document.getElementById("milliseconds");
-const options = {      
-    videoBitsPerSecond : 2500000,
-    mimeType : 'video/webm'
+const options = {
+    videoBitsPerSecond: 2500000,
+    mimeType: 'video/webm'
 };
-// time = milliseconds.value
-if (record){
-    record.onclick = function() {
-        chrome.tabs.executeScript({
-            code: `(${ getstream })(${ JSON.stringify({ time: milliseconds.value }) })`
-        });    
+
+async function getTabId() {
+    let queryOptions = { active: true, lastFocusedWindow: true };
+    let [tab] = await chrome.tabs.query(queryOptions);
+    return tab.id;
+}
+
+if (record) {
+    record.onclick = async function () {
+        chrome.scripting.executeScript({
+            func: getstream,
+            args: [{ time: milliseconds.value }],
+            target: { tabId: await getTabId() },
+        });
         function getstream(time) {
             var canvas = document.querySelector("canvas");
             if (canvas === undefined) {
@@ -22,7 +30,7 @@ if (record){
 
             console.log(stream);
             var vp9codec = { mimeType: "video/webm; codecs=vp9" };
-            var vp8codec = {mimeType: "video/webm;codecs=vp8"};
+            var vp8codec = { mimeType: "video/webm;codecs=vp8" };
             let mediaRecorder;
             try {
                 mediaRecorder = new MediaRecorder(stream, vp9codec);
@@ -43,8 +51,8 @@ if (record){
                     recordedChunks.push(event.data);
                     console.log(recordedChunks);
                     download();
-                 }
-            }   
+                }
+            }
             function download() {
                 var blob = new Blob(recordedChunks, {
                     type: "video/webm"
@@ -58,7 +66,7 @@ if (record){
                 a.click();
                 window.URL.revokeObjectURL(url);
             }
-            setTimeout(event => {
+            setTimeout(() => {
                 console.log("stopping");
                 mediaRecorder.stop();
             }, time.time);
