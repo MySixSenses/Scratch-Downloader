@@ -23,15 +23,17 @@ if (record){
             console.log(stream);
             var vp9codec = { mimeType: "video/webm; codecs=vp9" };
             var vp8codec = {mimeType: "video/webm;codecs=vp8"};
-            if (MediaSouce.isTypeSupported("video/webm; codecs=vp9")){
+            let mediaRecorder;
+            try {
                 mediaRecorder = new MediaRecorder(stream, vp9codec);
-            } else if (MediaSouce.isTypeSupported("video/webm; codecs=vp8")){
-                mediaRecorder = new MediaRecorder(stream, vp8codec);
-            } else {
-                alert("It appears your browser doesn't support either video source.")
-                return;
+            } catch (e) {
+                try {
+                    mediaRecorder = new MediaRecorder(stream, vp8codec);
+                } catch (e) {
+                    alert("It appears your browser doesn't support either video source.")
+                    return;
+                }
             }
-
             mediaRecorder.ondataavailable = handleDataAvailable;
             mediaRecorder.start();
 
@@ -52,7 +54,7 @@ if (record){
                 document.body.appendChild(a);
                 a.style = "display: none";
                 a.href = url;
-                a.download = "scratch.webm";
+                a.download = "video.webm";
                 a.click();
                 window.URL.revokeObjectURL(url);
             }
